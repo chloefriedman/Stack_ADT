@@ -3,12 +3,10 @@ public class ArrayStack<T> implements StackInterface<T>
 {
 
     private T[] stack;
-    private String name;
     private int size;
 
-    public ArrayStack(String n)
+    public ArrayStack()
     {
-        name = n;
         size = 0;
         this.stack = (T[])new Object[4];
     }
@@ -26,6 +24,7 @@ public class ArrayStack<T> implements StackInterface<T>
     @Override 
     public T peek() throws StackUnderflowException
     {
+        
         if(size == 0)
         {
             throw new StackUnderflowException("There are no elements in stack");
@@ -34,6 +33,7 @@ public class ArrayStack<T> implements StackInterface<T>
         {
             return stack[size];
         }
+    
     }
     @Override 
     public T pop() throws StackUnderflowException
@@ -62,8 +62,8 @@ public class ArrayStack<T> implements StackInterface<T>
         {
             doubleLength();
         }
-        size++;
         stack[size] = item;
+        size++;
         return item;
     }
     @Override
@@ -73,22 +73,23 @@ public class ArrayStack<T> implements StackInterface<T>
         {
             stack[i] = null;
         }
+        size = 0;
     }
 
     @Override
     public int search(Object o)
     {
-        for(int i = size; i > 0; i--)
+        for(int i = size -1; i >= 0; i--)
         {
-            if(stack[i-1] == o)
+            if((stack[i] != null && stack[i].equals(o)) || stack[i] == o)
             {
-                return i;
+                return size-i;
             }
         }
         return -1;
     }
 
-    public void halfLength()
+    private void halfLength()
     {
         int length = this.stack.length;
         T[] newStack = (T[])new Object[length/2];
@@ -101,7 +102,7 @@ public class ArrayStack<T> implements StackInterface<T>
 
     }
 
-     public void doubleLength()
+     private void doubleLength()
     {
         int length = stack.length;
         T[] newStack = (T[])new Object[2*length];
@@ -113,5 +114,6 @@ public class ArrayStack<T> implements StackInterface<T>
         stack = newStack;
 
     }
+
 
 }
