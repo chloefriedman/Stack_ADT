@@ -31,7 +31,7 @@ public class ArrayStack<T> implements StackInterface<T>
         }
         else
         {
-            return stack[size];
+            return stack[size-1];
         }
     
     }
@@ -44,8 +44,8 @@ public class ArrayStack<T> implements StackInterface<T>
         }
         else
         {
-            T toReturn = stack[size];
-            stack[size] = null;
+            T toReturn = stack[size-1];
+            stack[size-1] = null;
             size--;
             if(size == stack.length/4 && stack.length > 4)
             {

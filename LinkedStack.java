@@ -25,7 +25,7 @@ public class LinkedStack<T> implements StackInterface<T> {
     @Override
     public T push(T item)
     {
-        LLNode<T> temp = new LLNode(item);
+        LLNode<T> temp = new LLNode<T>(item);
         if(size == 0)
         {
             stack = temp;
