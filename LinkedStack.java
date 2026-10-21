@@ -92,6 +92,7 @@ public class LinkedStack<T> implements StackInterface<T> {
                     return count; 
                 }
                 count++;
+                temp = temp.getLink();
             }
         }
         return -1;
